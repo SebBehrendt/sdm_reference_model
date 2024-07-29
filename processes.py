@@ -60,7 +60,6 @@ class AttributePredicate(SubmodelElementCollection):
         predicate_type (str): Describes semantically what is specified by the value and how to compare it, e.g. requires_to_be, equals, within_range, ....
         attribute_value (str): Describes value of the attribute that is specified for.
     """
-
     attribute_carrier: str
     general_attribute: str
     predicate_type: str

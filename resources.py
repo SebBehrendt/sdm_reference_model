@@ -5,8 +5,8 @@ from enum import Enum
 from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
-from sdm.models.sdm_reference_model.product import ConstructionData
-from sdm.models.sdm_reference_model.performance import Performance
+from sdm_reference_model.product import ConstructionData
+from sdm_reference_model.performance import Performance
 
 
 class ResourceInformation(Submodel):
@@ -112,12 +112,13 @@ class InformationInterface(SubmodelElementCollection):
         protocol (str): The protocol of the information interface.
         adress (str): The adress of the information interface (e.g. IP adress)
         port (Optional[int]): The port of the information interface.
+        endpoint (Optional[str]): Specifies, the endpoint that to interface requires (e.g. topic, rest Endpoint or OPC UA Node id)
     """
 
     protocol: str
-    adress: str
+    host: str
     port: Optional[int]
-
+    endpoint: Optional[str]
 
 class MaterialDirectionType(str, Enum):
     """
@@ -141,8 +142,14 @@ class MaterialInterface(SubmodelElementCollection):
 
     position: conlist(float, min_items=2, max_items=3) # type: ignore
     orientation: conlist(float, min_items=2, max_items=3) # type: ignore
+    key_points: List[KeyPoint]
     direction: MaterialDirectionType = MaterialDirectionType.INOUT
 
+
+class KeyPoint(SubmodelElementCollection):
+    position: conlist(float, min_items=2, max_items=3) # type: ignore
+    orientation: conlist(float, min_items=2, max_items=3) # type: ignore
+    procedure_id: str # Id of the procedure of the resource that should be triggered here...
 
 class EnergyInterface(SubmodelElementCollection):
     """

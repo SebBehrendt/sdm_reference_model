@@ -3,12 +3,12 @@ from typing import Literal, Union, Optional, List
 
 from pydantic import BaseModel
 
-from sdm.models.sdm_reference_model.processes import Process
-from sdm.models.sdm_reference_model.procedure import Procedure, TimeModel
-from sdm.models.sdm_reference_model.product import Product
-from sdm.models.sdm_reference_model.resources import Resource
-from sdm.models.sdm_reference_model.order import Order
-from sdm.models.sdm_reference_model.change_scenario import ChangeScenario
+from sdm_reference_model.processes import Process
+from sdm_reference_model.procedure import Procedure, TimeModel
+from sdm_reference_model.product import Product
+from sdm_reference_model.resources import Resource
+from sdm_reference_model.order import Order
+from sdm_reference_model.change_scenario import ChangeScenario
 from aas_middleware.model.data_model import DataModel
 
 
