@@ -4,8 +4,8 @@ from typing import Literal, Union, Optional, List
 from enum import Enum
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
-from sdm_reference_model.processes import ProcessAttributes
-from sdm_reference_model.distribution import (
+from .processes import ProcessAttributes
+from .distribution import (
     ABSTRACT_REAL_DISTRIBUTION,
     DistributionTypeEnum,
 )

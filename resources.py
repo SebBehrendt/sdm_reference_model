@@ -5,8 +5,8 @@ from enum import Enum
 from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
-from sdm_reference_model.product import ConstructionData
-from sdm_reference_model.performance import Performance
+from .product import ConstructionData
+from .performance import Performance
 
 
 class ResourceInformation(Submodel):
@@ -80,13 +80,13 @@ class SubResource(SubmodelElementCollection):
         id_short (Optional[str]): The short id of the subresource.
         semantic_id (Optional[str]): The semantic id of the subresource.
         resource_id (str): The id of the subresource.
-        position (conlist(float, min_items=2, max_items=3)): The position of the subresource (x, y, z).
-        orientation (conlist(float, min_items=1, max_items=3)): The orientation of the subresource (alpha, beta, gamma).
+        position (conlist(float, min_length=2, max_length=3)): The position of the subresource (x, y, z).
+        orientation (conlist(float, min_length=1, max_length=3)): The orientation of the subresource (alpha, beta, gamma).
     """
 
     resource_id: str
-    position: conlist(float, min_items=2, max_items=3) # type: ignore
-    orientation: conlist(float, min_items=1, max_items=3) # type: ignore
+    position: conlist(float, min_length=2, max_length=3) # type: ignore
+    orientation: conlist(float, min_length=1, max_length=3) # type: ignore
 
 
 class ResourceConfiguration(Submodel):
@@ -136,19 +136,19 @@ class MaterialInterface(SubmodelElementCollection):
     of the product (each in 2D or 3D coordinates).
 
     Args:
-        position (conlist(float, min_items=2, max_items=3)): The position of the material interface.
-        orientation (conlist(float, min_items=2, max_items=3)): The orientation of the material interface.
+        position (conlist(float, min_length=2, max_length=3)): The position of the material interface.
+        orientation (conlist(float, min_length=2, max_length=3)): The orientation of the material interface.
     """
 
-    position: conlist(float, min_items=2, max_items=3) # type: ignore
-    orientation: conlist(float, min_items=2, max_items=3) # type: ignore
+    position: conlist(float, min_length=2, max_length=3) # type: ignore
+    orientation: conlist(float, min_length=2, max_length=3) # type: ignore
     key_points: List[KeyPoint]
     direction: MaterialDirectionType = MaterialDirectionType.INOUT
 
 
 class KeyPoint(SubmodelElementCollection):
-    position: conlist(float, min_items=2, max_items=3) # type: ignore
-    orientation: conlist(float, min_items=2, max_items=3) # type: ignore
+    position: conlist(float, min_length=2, max_length=3) # type: ignore
+    orientation: conlist(float, min_length=2, max_length=3) # type: ignore
     procedure_id: str # Id of the procedure of the resource that should be triggered here...
 
 class EnergyInterface(SubmodelElementCollection):

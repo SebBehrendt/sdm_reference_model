@@ -109,7 +109,7 @@ class ProcessModel(Submodel):
     type_: ProcessModelType
     sequence: Optional[List[str]]
     nodes: Optional[List[str]]
-    edges: Optional[List[conlist(str, min_items=2, max_items=2)]] # type: ignore
+    edges: Optional[List[conlist(str, min_length=2, max_length=2)]] # type: ignore
 
 
 class Process(AAS):

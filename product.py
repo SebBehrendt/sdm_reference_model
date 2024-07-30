@@ -7,7 +7,7 @@ from pydantic.dataclasses import dataclass
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
-from sdm_reference_model.procedure import Event, GreenHouseGasEmission
+from .procedure import Event, GreenHouseGasEmission
 
 
 class ProductUseType(str, Enum):

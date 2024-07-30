@@ -7,12 +7,12 @@ from pydantic import conlist
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 from watchfiles import Change
 
-from sdm_reference_model.distribution import (
+from .distribution import (
     ABSTRACT_INTEGER_DISTRIBUTION,
     ABSTRACT_REAL_DISTRIBUTION,
 )
-from sdm_reference_model.performance import KPIEnum
 
+from .performance import KPIEnum
 
 class ChangeDriverInfluence(SubmodelElementCollection):
     """
