@@ -13,14 +13,6 @@ from aas_middleware.model.data_model import DataModel
 
 
 class ReferenceModel(DataModel):
-    def __init__(self, *models: Union[List[BaseModel], BaseModel]):
-        super().__init__(*models)
-
-        self.models = {}
-
-    """
-    Reference model to describe a production system with products, resources, procedures, processes and orders.
-    """
 
     @classmethod
     def from_dict(cls, dict: dict) -> ReferenceModel:
@@ -55,17 +47,7 @@ class ReferenceModel(DataModel):
                     ChangeScenario(**scenario_dict) for scenario_dict in values
                 ]
                 models += change_scenarios
-        instance = cls(*models)
-        instance.models = {
-            "product": products if "products" in locals() else [],
-            "resource": resources if "resources" in locals() else [],
-            "procedure": procedures if "procedures" in locals() else [],
-            "process": processes if "processes" in locals() else [],
-            "order": orders if "orders" in locals() else [],
-            "change_scenario": (
-                change_scenarios if "change_scenarios" in locals() else []
-            ),
-        }
+        instance = cls.from_models(*models)
         return instance
 
     @property
