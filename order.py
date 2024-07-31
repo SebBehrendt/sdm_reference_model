@@ -1,4 +1,4 @@
-from typing import Union, List, Tuple, Optional
+from typing import List, Optional
 
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
@@ -89,5 +89,5 @@ class Order(AAS):
     """
 
     general_information: GeneralInformation
-    order_schedule: Optional[OrderSchedule]
-    ordered_products: Optional[OrderedProducts]
+    order_schedule: Optional[OrderSchedule] = None
+    ordered_products: Optional[OrderedProducts] = None

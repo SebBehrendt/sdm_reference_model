@@ -62,7 +62,7 @@ class KPI(SubmodelElementCollection):
 
     name: KPIEnum
     target: Literal["min", "max"]
-    weight: Optional[float] = 1
+    weight: float = 1.0
     value: Optional[float] = None
     context: Optional[Tuple[KPILevelEnum, ...]] = None
     resource: Optional[str] = None
@@ -104,4 +104,4 @@ class Performance(AAS):
     """
 
     key_performance_indicators: KeyPerformanceIndicators
-    event_log: Optional[EventLog]
+    event_log: Optional[EventLog] = None

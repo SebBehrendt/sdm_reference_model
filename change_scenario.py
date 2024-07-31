@@ -1,11 +1,8 @@
 from typing import Literal, Union, Optional, List
 
 from enum import Enum
-from click import Option
-from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
-from watchfiles import Change
 
 from .distribution import (
     ABSTRACT_INTEGER_DISTRIBUTION,
@@ -220,8 +217,8 @@ class ScenarioResources(Submodel):
         solution_ids (List[str]): The ids of the resources that are solutions of the optimization.
     """
 
-    base_id: Optional[str]
-    solution_ids: Optional[List[str]]
+    base_id: Optional[str] = None
+    solution_ids: Optional[List[str]] = None
 
 
 class ChangeScenario(AAS):
@@ -238,8 +235,8 @@ class ChangeScenario(AAS):
         id_short (Optional[str]): The short id of the change scenario.
     """
 
-    scenario_model: Optional[ScenarioModel]
-    scenario_resources: Optional[ScenarioResources]
-    reconfiguration_constraints: Optional[ReconfigurationConstraints]
-    reconfiguration_options: Optional[ReconfigurationOptions]
-    reconfiguration_objectives: Optional[ReconfigurationObjectives]
+    scenario_model: Optional[ScenarioModel] = None
+    scenario_resources: Optional[ScenarioResources] = None
+    reconfiguration_constraints: Optional[ReconfigurationConstraints] = None
+    reconfiguration_options: Optional[ReconfigurationOptions] = None
+    reconfiguration_objectives: Optional[ReconfigurationObjectives] = None

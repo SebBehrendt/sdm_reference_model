@@ -1,8 +1,8 @@
-from typing import Literal, Union, Optional, List
+from typing import Literal, Union
 
 from enum import Enum
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_middleware.model.formatting.aas.aas_model import SubmodelElementCollection
 
 
 class DistributionTypeEnum(str, Enum):

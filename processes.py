@@ -37,14 +37,14 @@ class ProcessInformation(Submodel):
             "Coating",
             "Changing Material Properties",
         ]
-    ]
-    material_flow_process_type: Optional[Literal["Storage", "Handling", "Conveying"]]
+    ] = None
+    material_flow_process_type: Optional[Literal["Storage", "Handling", "Conveying"]] = None
     remanufacturing_process_type: Optional[
         Literal["Disassembly", "Remediation", "Cleaning", "Inspection"]
-    ]
+    ] = None
     assembly_process_type: Optional[
         Literal["Joining", "Handling", "Adjusting", "Testing", "Special Operations"]
-    ]
+    ] = None
 
 
 class AttributePredicate(SubmodelElementCollection):
@@ -107,9 +107,9 @@ class ProcessModel(Submodel):
     """
 
     type_: ProcessModelType
-    sequence: Optional[List[str]]
-    nodes: Optional[List[str]]
-    edges: Optional[List[conlist(str, min_length=2, max_length=2)]] # type: ignore
+    sequence: Optional[List[str]] = None
+    nodes: Optional[List[str]] = None
+    edges: Optional[List[conlist(str, min_length=2, max_length=2)]] = None # type: ignore
 
 
 class Process(AAS):

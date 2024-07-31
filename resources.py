@@ -1,12 +1,11 @@
 from __future__ import annotations
-from typing import List, Optional, Tuple, Literal, Union
+from typing import List, Optional, Literal
 from enum import Enum
 
 from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 from .product import ConstructionData
-from .performance import Performance
 
 
 class ResourceInformation(Submodel):
@@ -23,7 +22,7 @@ class ResourceInformation(Submodel):
         resource_type (Literal["Manufacturing", "Material Flow", "Storage"]): The type of the resource.
     """
 
-    manufacturer: Optional[str]
+    manufacturer: Optional[str] = None
     production_level: Literal["Module", "Station", "System", "Plant", "Network"]
     resource_type: Literal[
         "Manufacturing",
@@ -48,7 +47,6 @@ class Capabilities(Submodel):
         semantic_id (Optional[str]): The semantic id of the capabilities.
         procedure_ids (List[str]): The list of ids of procedure that are available for the resource.
     """
-
     procedures_ids: List[str]
 
 
@@ -65,10 +63,10 @@ class ControlLogic(Submodel):
         routing_policy (Literal["random", "nearest", "shortest_queue", "alternating, "round_robin"]): The routing policy of the resource how redundant sub resources are used.
     """
 
-    sequencing_policy: Optional[Literal["FIFO", "SPT", "LIFO", "SPT", "EDD", "ODD"]]
+    sequencing_policy: Optional[Literal["FIFO", "SPT", "LIFO", "SPT", "EDD", "ODD"]] = None
     routing_policy: Optional[
         Literal["random", "nearest", "shortest_queue", "alternating", "round_robin"]
-    ]
+    ] = None
 
 
 class SubResource(SubmodelElementCollection):
@@ -101,7 +99,7 @@ class ResourceConfiguration(Submodel):
         sub_resources (Optional[List[SubResource]]): IDs ob sub resources
     """
 
-    sub_resources: Optional[List[SubResource]]
+    sub_resources: Optional[List[SubResource]] = None
 
 
 class InformationInterface(SubmodelElementCollection):
@@ -117,8 +115,8 @@ class InformationInterface(SubmodelElementCollection):
 
     protocol: str
     host: str
-    port: Optional[int]
-    endpoint: Optional[str]
+    port: Optional[int] = None
+    endpoint: Optional[str] = None
 
 class MaterialDirectionType(str, Enum):
     """
@@ -184,9 +182,9 @@ class ResourceInterfaces(Submodel):
         energy_interfaces (Optional[List[EnergyInterface]]): The energy interfaces of the resource.
     """
 
-    information_interface: Optional[List[InformationInterface]]
-    material_interfaces: Optional[List[MaterialInterface]]
-    energy_interfaces: Optional[List[EnergyInterface]]
+    information_interface: Optional[List[InformationInterface]] = None
+    material_interfaces: Optional[List[MaterialInterface]] = None
+    energy_interfaces: Optional[List[EnergyInterface]] = None
 
 
 class ResourcePerformance(SubmodelElementCollection):
@@ -202,8 +200,8 @@ class ResourcePerformance(SubmodelElementCollection):
         obtained_performance_from (str): The tool / software used to obtain the results.
     """
 
-    performance_id: Optional[str]  # link to the performance AAS of the resource
-    associated_configuration_id: Optional[str]
+    performance_id: Optional[str] = None  # link to the performance AAS of the resource
+    associated_configuration_id: Optional[str] = None
     obtained_performance_from: str  # Tool / Software used to obtain the results
 
 
@@ -219,7 +217,7 @@ class ResourcePerformances(Submodel):
         resource_performance (Optional[List[ResourcePerformance]]): The performances of the resource.
     """
 
-    resource_performance: Optional[List[ResourcePerformance]]
+    resource_performance: Optional[List[ResourcePerformance]] = None
 
 
 class ProductReference(Submodel):
@@ -249,11 +247,11 @@ class Resource(AAS):
         resource_interface (Optional[ResourceInterfaces]): the interfaces of the resource.
     """
 
-    resource_information: Optional[ResourceInformation]
-    capabilities: Optional[Capabilities]
-    construction_data: Optional[ConstructionData]
-    resource_configuration: Optional[ResourceConfiguration]
-    control_logic: Optional[ControlLogic]
-    resource_interface: Optional[ResourceInterfaces]
-    resource_performances: Optional[ResourcePerformances]
-    product_reference: Optional[ProductReference]
+    resource_information: Optional[ResourceInformation] = None
+    capabilities: Optional[Capabilities] = None
+    construction_data: Optional[ConstructionData] = None
+    resource_configuration: Optional[ResourceConfiguration] = None
+    control_logic: Optional[ControlLogic] = None
+    resource_interface: Optional[ResourceInterfaces] = None
+    resource_performances: Optional[ResourcePerformances] = None
+    product_reference: Optional[ProductReference] = None

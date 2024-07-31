@@ -1,9 +1,7 @@
 from __future__ import annotations
 from enum import Enum
 
-from typing import Optional, List, Union, Literal
-from click import Option
-from pydantic.dataclasses import dataclass
+from typing import Optional, List
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
@@ -53,8 +51,8 @@ class BOM(Submodel):
         sub_products (Optional[List[SubmodelElementCollection]]): The list of subproducts contained in the product (depht 1)
     """
 
-    sub_product_count: Optional[int]
-    sub_products: Optional[List[SubProduct]]
+    sub_product_count: Optional[int] = None
+    sub_products: Optional[List[SubProduct]] = None
 
 
 class ProcessReference(Submodel):
@@ -71,7 +69,7 @@ class ProcessReference(Submodel):
     """
 
     process_id: str  # reference to the process to create the product
-    alternative_processes_ids: Optional[List[str]]
+    alternative_processes_ids: Optional[List[str]] = None
 
 
 class ConstructionData(Submodel):
@@ -86,7 +84,7 @@ class ConstructionData(Submodel):
         cad_file (Optional[str]): IRI to a CAD file of the product.
     """
 
-    cad_file: Optional[str]
+    cad_file: Optional[str] = None
 
 
 class ProductInformation(Submodel):
@@ -104,10 +102,10 @@ class ProductInformation(Submodel):
 
     product_type: str
     manufacturer: str
-    maintenance_manual: Optional[str]
-    operating_manual: Optional[str]
-    disassembly_manual: Optional[str]
-    green_house_gas_emission: Optional[GreenHouseGasEmission]
+    maintenance_manual: Optional[str] = None
+    operating_manual: Optional[str] = None
+    disassembly_manual: Optional[str] = None
+    green_house_gas_emission: Optional[GreenHouseGasEmission] = None
 
 
 class TrackingData(Submodel):
@@ -122,7 +120,7 @@ class TrackingData(Submodel):
         execution_log (Optional[List[Event]]): The execution log of the product containing all events of the product.
     """
 
-    execution_log: Optional[List[Event]]
+    execution_log: Optional[List[Event]] = None
 
 
 class Product(AAS):
@@ -140,8 +138,8 @@ class Product(AAS):
 
     """
 
-    product_information: Optional[ProductInformation]
-    construction_data: Optional[ConstructionData]
-    bom: Optional[BOM]
-    process_reference: Optional[ProcessReference]
-    tracking_data: Optional[TrackingData]
+    product_information: Optional[ProductInformation] = None
+    construction_data: Optional[ConstructionData] = None
+    bom: Optional[BOM] = None
+    process_reference: Optional[ProcessReference] = None
+    tracking_data: Optional[TrackingData] = None

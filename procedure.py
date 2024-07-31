@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Literal, Union, Optional, List
+from typing import Literal, Optional, List
 
 from enum import Enum
 
@@ -64,10 +64,10 @@ class Event(SubmodelElementCollection):
     procedure_id: str
     procedure_type: ProcedureTypeEnum
     activity: ActivityTypeEnum
-    product_id: Optional[str]
-    expected_end_time: Optional[str]
-    actual_end_time: Optional[str]
-    success: Optional[bool]
+    product_id: Optional[str] = None
+    expected_end_time: Optional[str] = None
+    actual_end_time: Optional[str] = None
+    success: Optional[bool] = None
 
 
 class ExecutionModel(Submodel):
@@ -83,8 +83,8 @@ class ExecutionModel(Submodel):
         exeuction_log (List[Event]): The execution log of the procedure.
     """
 
-    schedule: Optional[List[Event]]
-    exeuction_log: Optional[List[Event]]
+    schedule: Optional[List[Event]] = None
+    exeuction_log: Optional[List[Event]] = None
 
 
 class TimeModel(Submodel):
@@ -108,14 +108,14 @@ class TimeModel(Submodel):
     """
 
     type_: Literal["sequential", "distribution", "distance_based"]
-    sequence: Optional[List[float]]
-    repeat: Optional[bool]
-    distribution_type: Optional[DistributionTypeEnum]
-    distribution_parameters: Optional[ABSTRACT_REAL_DISTRIBUTION]
-    speed: Optional[float]
-    reaction_time: Optional[float]
-    acceleration: Optional[float]
-    deceleration: Optional[float]
+    sequence: Optional[List[float]] = None
+    repeat: Optional[bool] = None
+    distribution_type: Optional[DistributionTypeEnum] = None
+    distribution_parameters: Optional[ABSTRACT_REAL_DISTRIBUTION] = None
+    speed: Optional[float] = None
+    reaction_time: Optional[float] = None
+    acceleration: Optional[float] = None
+    deceleration: Optional[float] = None
 
 
 class ProcedureInformation(Submodel):
@@ -139,9 +139,9 @@ class GreenHouseGasEmission(SubmodelElementCollection):
         emission_scope_three (Optional[float]): The greenhouse gas emission of scope 3.
     """
 
-    emission_scope_one: Optional[float]
-    emission_scope_two: Optional[float]
-    emission_scope_three: Optional[float]
+    emission_scope_one: Optional[float] = None
+    emission_scope_two: Optional[float] = None
+    emission_scope_three: Optional[float] = None
 
 
 class ProcedureEmission(Submodel):
@@ -153,8 +153,8 @@ class ProcedureEmission(Submodel):
         green_house_gas_emission (Optional[GreenHouseGasEmission]): The greenhouse gas emission of the procedure.
     """
 
-    power_consumption: Optional[float]
-    green_house_gas_emission: Optional[GreenHouseGasEmission]
+    power_consumption: Optional[float] = None
+    green_house_gas_emission: Optional[GreenHouseGasEmission] = None
 
 
 class Procedure(AAS):
@@ -173,7 +173,7 @@ class Procedure(AAS):
     """
 
     procedure_information: ProcedureInformation
-    process_attributes: Optional[ProcessAttributes]
-    execution_model: Optional[ExecutionModel]
-    time_model: Optional[TimeModel]
-    procedure_emission: Optional[ProcedureEmission]
+    process_attributes: Optional[ProcessAttributes] = None
+    execution_model: Optional[ExecutionModel] = None
+    time_model: Optional[TimeModel] = None
+    procedure_emission: Optional[ProcedureEmission] = None
