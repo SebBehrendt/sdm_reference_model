@@ -146,7 +146,7 @@ class MaterialInterface(SubmodelElementCollection):
 
 class KeyPoint(SubmodelElementCollection):
     position: conlist(float, min_length=2, max_length=3) # type: ignore
-    orientation: conlist(float, min_length=2, max_length=3) # type: ignore
+    orientation: conlist(float, min_length=2, max_length=4) # type: ignore
     procedure_id: str # Id of the procedure of the resource that should be triggered here...
 
 class EnergyInterface(SubmodelElementCollection):
