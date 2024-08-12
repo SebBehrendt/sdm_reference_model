@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Literal, Union, Optional, List
+from typing import Literal, Type, Union, Optional, List
 
 from pydantic import BaseModel
 
@@ -9,103 +9,48 @@ from .product import Product
 from .resources import Resource
 from .order import Order
 from .change_scenario import ChangeScenario
-from aas_middleware.model.data_model import DataModel
+from aas_middleware.model.data_model import DataModel, NESTED_DICT
 
 
 class ReferenceModel(DataModel):
+    products: List[Product] = []
+    resources: List[Resource] = []
+    procedures: List[Procedure] = []
+    processes: List[Process] = []
+    orders: List[Order] = []
+    change_scenario: Optional[ChangeScenario] = None
+
+    def from_dict(self, data: NESTED_DICT) -> None:
+        # self.super().from_dict(data=data, types=[Product, Resource, Procedure, Process, Order, ChangeScenario])
+        # use the from dict of the super class
+        super(ReferenceModel, self).from_dict(data=data, types=[Product, Resource, Procedure, Process, Order, ChangeScenario])
+        self.products = self.get_models_of_type(Product)
+        self.resources = self.get_models_of_type(Resource)
+        self.procedures = self.get_models_of_type(Procedure)
+        self.processes = self.get_models_of_type(Process)
+        self.orders = self.get_models_of_type(Order)
+        change_scenarios = self.get_models_of_type(ChangeScenario)
+        if change_scenarios:
+            self.change_scenario = change_scenarios.pop()
+        else:
+            self.change_scenario = None
+
 
     @classmethod
-    def from_dict(cls, dict: dict) -> ReferenceModel:
-        """
-        Method to load the reference model from a dictionary.
-
-        Args:
-            dict (dict): The dictionary to load from.
-
-        Returns:
-            ReferenceModel: The loaded reference model.
-        """
-        models = []
-        for key, values in dict.items():
-            if key == "product":
-                products = [Product(**product_dict) for product_dict in values]
-                models += products
-            elif key == "resource":
-                resources = [Resource(**resource_dict) for resource_dict in values]
-                models += resources
-            elif key == "procedure":
-                procedures = [Procedure(**procedure_dict) for procedure_dict in values]
-                models += procedures
-            elif key == "process":
-                processes = [Process(**process_dict) for process_dict in values]
-                models += processes
-            elif key == "order":
-                orders = [Order(**order_dict) for order_dict in values]
-                models += orders
-            elif key == "change_scenario":
-                change_scenarios = [
-                    ChangeScenario(**scenario_dict) for scenario_dict in values
-                ]
-                models += change_scenarios
-        instance = cls.from_models(*models)
+    def from_models(cls, *models: List[Union[Product, Resource, Procedure, Process, Order, ChangeScenario]]) -> ReferenceModel:
+        instance = cls()
+        for model in models:
+            if isinstance(model, Product):
+                instance.products.append(model)
+            elif isinstance(model, Resource):
+                instance.resources.append(model)
+            elif isinstance(model, Procedure):
+                instance.procedures.append(model)
+            elif isinstance(model, Process):
+                instance.processes.append(model)
+            elif isinstance(model, Order):
+                instance.orders.append(model)
+            elif isinstance(model, ChangeScenario):
+                instance.change_scenario = model
+            instance.add(model)
         return instance
-
-    @property
-    def products(self) -> List[Product]:
-        """
-        Property to get the products of the reference model.
-
-        Returns:
-            List[Product]: The products.
-        """
-        return self.get_models_of_type(Product)
-
-    @property
-    def resources(self) -> List[Resource]:
-        """
-        Property to get the resources of the reference model.
-
-        Returns:
-            List[Resource]: The resources.
-        """
-        return self.get_models_of_type(Resource)
-
-    @property
-    def procedures(self) -> List[Procedure]:
-        """
-        Property to get the procedures of the reference model.
-
-        Returns:
-            List[Procedure]: The procedures.
-        """
-        return self.get_models_of_type(Procedure)
-
-    @property
-    def processes(self) -> List[Process]:
-        """
-        Property to get the processes of the reference model.
-
-        Returns:
-            List[Process]: The processes.
-        """
-        return self.get_models_of_type(Process)
-
-    @property
-    def orders(self) -> List[Order]:
-        """
-        Property to get the orders of the reference model.
-
-        Returns:
-            List[Order]: The orders.
-        """
-        return self.get_models_of_type(Order)
-
-    @property
-    def change_scenario(self) -> List[ChangeScenario]:
-        """
-        Property to get the change scenarios of the reference model.
-
-        Returns:
-            List[ChangeScenario]: The change scenarios.
-        """
-        return self.get_models_of_type(ChangeScenario)
