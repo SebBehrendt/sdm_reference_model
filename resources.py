@@ -5,6 +5,8 @@ from enum import Enum
 from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+
+from sdm.models.sdm_reference_model.procedure import ProcedureTypeEnum
 from .product import ConstructionData
 
 
@@ -17,11 +19,12 @@ class ResourceInformation(Submodel):
         description (Optional[str]): The description of the general information.
         id_short (Optional[str]): The short id of the general information.
         semantic_id (Optional[str]): The semantic id of the general information.
+        name (Optional[str]): The name of the resource.
         manufacturer (Optional[str]): The manufacturer of the resource.
         production_level (Literal["Module", "Station", "System", "Plant", "Network"]): The production level of the resource.
         resource_type (Literal["Manufacturing", "Material Flow", "Storage"]): The type of the resource.
     """
-
+    name: Optional[str] = None
     manufacturer: Optional[str] = None
     production_level: Literal["Module", "Station", "System", "Plant", "Network"]
     resource_type: Literal[
@@ -86,6 +89,19 @@ class SubResource(SubmodelElementCollection):
     position: conlist(float, min_length=2, max_length=3) # type: ignore
     orientation: conlist(float, min_length=1, max_length=3) # type: ignore
 
+class ResourceStatus(SubmodelElementCollection):
+    """
+    SubmodelElementCollection to describe the status of a resource.
+
+    Args:
+        description (Optional[str]): The description of the status.
+        id_short (Optional[str]): The short id of the status.
+        semantic_id (Optional[str]): The semantic id of the status.
+        status (ProcedureTypeEnum): The status of the resource.
+        status_start (Optional[str]): The start time of the status (ISO 8601 time stamp).
+    """
+    status: ProcedureTypeEnum
+    status_start: Optional[str] = None
 
 class ResourceConfiguration(Submodel):
     """
@@ -100,6 +116,7 @@ class ResourceConfiguration(Submodel):
     """
 
     sub_resources: Optional[List[SubResource]] = None
+    status: Optional[ResourceStatus] = None
 
 
 class InformationInterface(SubmodelElementCollection):
