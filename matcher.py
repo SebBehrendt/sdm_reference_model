@@ -187,8 +187,8 @@ class Matcher:
         Returns:
             Matcher: The created matcher.
         """
-        processes = reference_model.processes
-        procedures = reference_model.procedures
+        processes = reference_model.process
+        procedures = reference_model.procedure
         return cls(reference_model)
 
     def get_matching_procedures(
