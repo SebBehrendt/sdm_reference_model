@@ -102,6 +102,7 @@ class TimeModel(Submodel):
         distribution_type (Optional[str]): The name of the distribution (e.g. "normal", "exponential", "weibull", "lognormal", "gamma", "beta", "uniform", "triangular", "discrete") (only for distribution time models).
         distribution_parameters (Optional[List[float]]): The parameters of the distribution (1: location, 2: scale, 3 and 4: shape) (only for distribution time models).
         speed (Optional[float]): The speed of the resource (only for distance-based time models).
+        rotation_speed (Optional[float]): The rotation speed of the resource (only for distance-based time models).
         reaction_time (Optional[float]): The reaction time of the resource (only for distance-based time models).
         acceleration (Optional[float]): The acceleration of the resource (only for distance-based time models).
         deceleration (Optional[float]): The deceleration of the resource (only for distance-based time models).
@@ -113,6 +114,7 @@ class TimeModel(Submodel):
     distribution_type: Optional[DistributionTypeEnum] = None
     distribution_parameters: Optional[ABSTRACT_REAL_DISTRIBUTION] = None
     speed: Optional[float] = None
+    rotation_speed: Optional[float] = None
     reaction_time: Optional[float] = None
     acceleration: Optional[float] = None
     deceleration: Optional[float] = None
