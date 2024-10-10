@@ -1,4 +1,5 @@
 from __future__ import annotations
+from tkinter import W
 from typing import Literal, Optional, List
 
 from enum import Enum
@@ -131,32 +132,17 @@ class ProcedureInformation(Submodel):
     procedure_type: ProcedureTypeEnum
 
 
-class GreenHouseGasEmission(SubmodelElementCollection):
-    """
-    Submodel collection containing information about the greenhouse gas emission of a procedure in kilogram of CO2-equivalents.
-
-    Args:
-        emission_scope_one (Optional[float]): The greenhouse gas emission of scope 1.
-        emission_scope_two (Optional[float]): The greenhouse gas emission of scope 2.
-        emission_scope_three (Optional[float]): The greenhouse gas emission of scope 3.
-    """
-
-    emission_scope_one: Optional[float] = None
-    emission_scope_two: Optional[float] = None
-    emission_scope_three: Optional[float] = None
-
-
-class ProcedureEmission(Submodel):
+class ProcedureConsumption(Submodel):
     """
     Submodel containing the specification of a procedure.
 
     Args:
         power_consumption (Optional[float]): The power consumption of the procedure.
-        green_house_gas_emission (Optional[GreenHouseGasEmission]): The greenhouse gas emission of the procedure.
-    """
+        water_consumption (Optional[float]): The water consumption of the procedure.
 
+    """
     power_consumption: Optional[float] = None
-    green_house_gas_emission: Optional[GreenHouseGasEmission] = None
+    water_consumption: Optional[float] = None
 
 
 class Procedure(AAS):
@@ -178,4 +164,4 @@ class Procedure(AAS):
     process_attributes: Optional[ProcessAttributes] = None
     execution_model: Optional[ExecutionModel] = None
     time_model: Optional[TimeModel] = None
-    procedure_emission: Optional[ProcedureEmission] = None
+    procedure_consumption: Optional[ProcedureConsumption] = None

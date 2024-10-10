@@ -5,7 +5,7 @@ from typing import Optional, List
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
-from .procedure import Event, GreenHouseGasEmission
+from .procedure import Event
 
 
 class ProductUseType(str, Enum):
@@ -86,6 +86,19 @@ class ConstructionData(Submodel):
 
     cad_file: Optional[str] = None
 
+class GreenHouseGasEmission(SubmodelElementCollection):
+    """
+    Submodel collection containing information about the greenhouse gas emission of a procedure in kilogram of CO2-equivalents.
+
+    Args:
+        emission_scope_one (Optional[float]): The greenhouse gas emission of scope 1.
+        emission_scope_two (Optional[float]): The greenhouse gas emission of scope 2.
+        emission_scope_three (Optional[float]): The greenhouse gas emission of scope 3.
+    """
+
+    emission_scope_one: Optional[float] = None
+    emission_scope_two: Optional[float] = None
+    emission_scope_three: Optional[float] = None
 
 class ProductInformation(Submodel):
     """
