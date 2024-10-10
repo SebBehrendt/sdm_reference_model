@@ -113,8 +113,8 @@ class ProductInformation(Submodel):
         manufacturer (str): The manufacturer of the product.
     """
 
-    product_type: str
-    manufacturer: str
+    product_type: Optional[str] = None
+    manufacturer: Optional[str] = None
     name: Optional[str] = None
     maintenance_manual: Optional[str] = None
     operating_manual: Optional[str] = None
