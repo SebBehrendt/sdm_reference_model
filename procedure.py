@@ -127,9 +127,11 @@ class ProcedureInformation(Submodel):
 
     Args:
         procedure_type (ProcedureTypeEnum): The type of the procedure.
+        name (Optional[str]): The name of the procedure.
     """
-
     procedure_type: ProcedureTypeEnum
+    name: Optional[str] = None
+
 
 
 class ProcedureConsumption(Submodel):

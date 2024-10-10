@@ -45,6 +45,7 @@ class ProcessInformation(Submodel):
     assembly_process_type: Optional[
         Literal["Joining", "Handling", "Adjusting", "Testing", "Special Operations"]
     ] = None
+    name: Optional[str] = None
 
 
 class AttributePredicate(SubmodelElementCollection):

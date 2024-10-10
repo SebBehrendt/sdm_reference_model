@@ -115,6 +115,7 @@ class ProductInformation(Submodel):
 
     product_type: str
     manufacturer: str
+    name: Optional[str] = None
     maintenance_manual: Optional[str] = None
     operating_manual: Optional[str] = None
     disassembly_manual: Optional[str] = None
