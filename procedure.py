@@ -81,11 +81,11 @@ class ExecutionModel(Submodel):
         id_short (Optional[str]): The short id of the execution model.
         semantic_id (Optional[str]): The semantic id of the execution model.
         schedule (List[Event]): The schedule of the procedure.
-        exeuction_log (List[Event]): The execution log of the procedure.
+        execution_log (List[Event]): The execution log of the procedure.
     """
 
     schedule: Optional[List[Event]] = None
-    exeuction_log: Optional[List[Event]] = None
+    execution_log: Optional[List[Event]] = None
 
 
 class TimeModel(Submodel):
