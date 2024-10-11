@@ -1,5 +1,4 @@
 from __future__ import annotations
-from tkinter import W
 from typing import Literal, Optional, List
 
 from enum import Enum
