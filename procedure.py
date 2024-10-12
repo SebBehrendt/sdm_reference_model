@@ -89,7 +89,7 @@ class ExecutionModel(Submodel):
 
 class TimeModel(Submodel):
     """
-    Submodel containing parameters to represent the timely duration of a procedure.
+    Submodel containing parameters to represent the timely duration of a procedure. All times are specified in minutes unless otherwise stated.
 
     Args:
         id (str): The id of the time model.
@@ -101,11 +101,11 @@ class TimeModel(Submodel):
         repeat (Optional[bool]): Whether the sequence is repeated or not (only for sequential time models).
         distribution_type (Optional[str]): The name of the distribution (e.g. "normal", "exponential", "weibull", "lognormal", "gamma", "beta", "uniform", "triangular", "discrete") (only for distribution time models).
         distribution_parameters (Optional[List[float]]): The parameters of the distribution (1: location, 2: scale, 3 and 4: shape) (only for distribution time models).
-        speed (Optional[float]): The speed of the resource (only for distance-based time models).
-        rotation_speed (Optional[float]): The rotation speed of the resource (only for distance-based time models).
-        reaction_time (Optional[float]): The reaction time of the resource (only for distance-based time models).
-        acceleration (Optional[float]): The acceleration of the resource (only for distance-based time models).
-        deceleration (Optional[float]): The deceleration of the resource (only for distance-based time models).
+        speed (Optional[float]): The speed of the resource (only for distance-based time models) in m / s.
+        rotation_speed (Optional[float]): The rotation speed of the resource (only for distance-based time models) in degree / s.
+        reaction_time (Optional[float]): The reaction time of the resource (only for distance-based time models) in s.
+        acceleration (Optional[float]): The acceleration of the resource (only for distance-based time models) in m^2/s.
+        deceleration (Optional[float]): The deceleration of the resource (only for distance-based time models) in m^2/s.
     """
 
     type_: Literal["sequential", "distribution", "distance_based"]
