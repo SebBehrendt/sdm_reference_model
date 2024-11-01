@@ -3,7 +3,11 @@ from typing import Literal, Optional, List
 
 from enum import Enum
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_middleware.model.formatting.aas.aas_model import (
+    AAS,
+    Submodel,
+    SubmodelElementCollection,
+)
 from .processes import ProcessAttributes
 from .distribution import (
     ABSTRACT_REAL_DISTRIBUTION,
@@ -87,6 +91,21 @@ class ExecutionModel(Submodel):
     execution_log: Optional[List[Event]] = None
 
 
+class TransportTime(SubmodelElementCollection):
+    """
+    This class represents a transport time where the required time for transport between and origin and a target is specified.
+
+    Args:
+        origin_id (str): Id of the resource where the transport starts
+        target_id (str): Id of the resource where the transport ends
+        transport_time (float): Time needed for the transport in seconds.
+    """
+
+    origin_id: str
+    target_id: str
+    transport_time: float
+
+
 class TimeModel(Submodel):
     """
     Submodel containing parameters to represent the timely duration of a procedure. All times are specified in minutes unless otherwise stated.
@@ -118,6 +137,7 @@ class TimeModel(Submodel):
     reaction_time: Optional[float] = None
     acceleration: Optional[float] = None
     deceleration: Optional[float] = None
+    transport_times: Optional[List[TransportTime]] = None
 
 
 class ProcedureInformation(Submodel):
@@ -128,9 +148,9 @@ class ProcedureInformation(Submodel):
         procedure_type (ProcedureTypeEnum): The type of the procedure.
         name (Optional[str]): The name of the procedure.
     """
+
     procedure_type: ProcedureTypeEnum
     name: Optional[str] = None
-
 
 
 class ProcedureConsumption(Submodel):
@@ -142,6 +162,7 @@ class ProcedureConsumption(Submodel):
         water_consumption (Optional[float]): The water consumption of the procedure.
 
     """
+
     power_consumption: Optional[float] = None
     water_consumption: Optional[float] = None
 
