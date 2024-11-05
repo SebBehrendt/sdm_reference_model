@@ -36,9 +36,8 @@ class ReferenceModel(DataModel):
             self.performance = self.get_models_of_type(Performance)
         else:
             self.performance = []
-        change_scenarios = self.get_models_of_type(ChangeScenario)
-        if change_scenarios:
-            self.change_scenario = change_scenarios.pop()
+        if "change_scenario" in data:
+            self.change_scenario = self.get_models_of_type(ChangeScenario).pop()
         else:
             self.change_scenario = None
 
