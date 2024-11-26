@@ -3,7 +3,7 @@ from enum import Enum
 
 from typing import Optional, List
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_pydantic import AAS, Submodel, SubmodelElementCollection
 
 from sdm_reference_model.procedure import Event
 
@@ -86,6 +86,7 @@ class ConstructionData(Submodel):
 
     cad_file: Optional[str] = None
 
+
 class GreenHouseGasEmission(SubmodelElementCollection):
     """
     Submodel collection containing information about the greenhouse gas emission of a procedure in kilogram of CO2-equivalents.
@@ -99,6 +100,7 @@ class GreenHouseGasEmission(SubmodelElementCollection):
     emission_scope_one: Optional[float] = None
     emission_scope_two: Optional[float] = None
     emission_scope_three: Optional[float] = None
+
 
 class ProductInformation(Submodel):
     """

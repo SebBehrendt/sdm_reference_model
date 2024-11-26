@@ -2,3 +2,4 @@ __pycache__/
 
 aas_reference_model.json
 pydantic_reference_model.json
+dist/

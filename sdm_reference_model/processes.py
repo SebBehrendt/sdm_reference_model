@@ -5,7 +5,7 @@ from enum import Enum
 
 from pydantic import conlist
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_pydantic import AAS, Submodel, SubmodelElementCollection
 
 
 class ProcessInformation(Submodel):
@@ -38,7 +38,9 @@ class ProcessInformation(Submodel):
             "Changing Material Properties",
         ]
     ] = None
-    material_flow_process_type: Optional[Literal["Storage", "Handling", "Conveying"]] = None
+    material_flow_process_type: Optional[
+        Literal["Storage", "Handling", "Conveying"]
+    ] = None
     remanufacturing_process_type: Optional[
         Literal["Disassembly", "Remediation", "Cleaning", "Inspection"]
     ] = None
@@ -61,6 +63,7 @@ class AttributePredicate(SubmodelElementCollection):
         predicate_type (str): Describes semantically what is specified by the value and how to compare it, e.g. requires_to_be, equals, within_range, ....
         attribute_value (str): Describes value of the attribute that is specified for.
     """
+
     attribute_carrier: str
     general_attribute: str
     predicate_type: str

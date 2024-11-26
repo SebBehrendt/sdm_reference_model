@@ -2,7 +2,7 @@ from typing import Literal, Union, Optional, List
 
 from enum import Enum
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_pydantic import AAS, Submodel, SubmodelElementCollection
 
 from .distribution import (
     ABSTRACT_INTEGER_DISTRIBUTION,
@@ -10,6 +10,7 @@ from .distribution import (
 )
 
 from .performance import KPIEnum
+
 
 class ChangeDriverInfluence(SubmodelElementCollection):
     """
@@ -43,8 +44,13 @@ class ChangeDriver(SubmodelElementCollection):
         change_driver_influences (List[ChangeDriverInfluence]): The influences of the change driver on the receptor key figures.
         influenced_receptor_key_figure_ids (List[str]): The ids of the receptor key figures that are influenced by the change driver.
     """
-    distribution_function_over_time_horizon: Optional[ABSTRACT_REAL_DISTRIBUTION] = None  # wann der Wandlungstreiber in einem vorgegebenen Zeitraum auftreten kann
-    occurrence_distribution_per_unit_of_time: Optional[ABSTRACT_INTEGER_DISTRIBUTION] = None  # mit welcher Wahrscheinlichkeit der Wandlungstreiber insgesamt eintritt
+
+    distribution_function_over_time_horizon: Optional[ABSTRACT_REAL_DISTRIBUTION] = (
+        None  # wann der Wandlungstreiber in einem vorgegebenen Zeitraum auftreten kann
+    )
+    occurrence_distribution_per_unit_of_time: Optional[
+        ABSTRACT_INTEGER_DISTRIBUTION
+    ] = None  # mit welcher Wahrscheinlichkeit der Wandlungstreiber insgesamt eintritt
     frequency: float
     change_driver_influences: List[ChangeDriverInfluence]
     influenced_receptor_key_figure_ids: List[

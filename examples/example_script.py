@@ -1,8 +1,6 @@
-import asyncio
 from datetime import datetime
 import json
 from pathlib import Path
-import pathlib
 import uuid
 
 import aas_middleware

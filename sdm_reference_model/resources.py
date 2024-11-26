@@ -4,7 +4,7 @@ from enum import Enum
 
 from pydantic import conlist
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_pydantic import AAS, Submodel, SubmodelElementCollection
 
 from sdm_reference_model.procedure import ProcedureTypeEnum
 from sdm_reference_model.product import ConstructionData
@@ -24,6 +24,7 @@ class ResourceInformation(Submodel):
         production_level (Literal["Module", "Station", "System", "Plant", "Network"]): The production level of the resource.
         resource_type (Literal["Manufacturing", "Material Flow", "Storage"]): The type of the resource.
     """
+
     name: Optional[str] = None
     manufacturer: Optional[str] = None
     production_level: Literal["Module", "Station", "System", "Plant", "Network"]
@@ -50,6 +51,7 @@ class Capabilities(Submodel):
         semantic_id (Optional[str]): The semantic id of the capabilities.
         procedure_ids (List[str]): The list of ids of procedure that are available for the resource.
     """
+
     procedures_ids: List[str]
 
 
@@ -66,7 +68,9 @@ class ControlLogic(Submodel):
         routing_policy (Literal["random", "nearest", "shortest_queue", "alternating, "round_robin"]): The routing policy of the resource how redundant sub resources are used.
     """
 
-    sequencing_policy: Optional[Literal["FIFO", "SPT", "LIFO", "SPT", "EDD", "ODD"]] = None
+    sequencing_policy: Optional[Literal["FIFO", "SPT", "LIFO", "SPT", "EDD", "ODD"]] = (
+        None
+    )
     routing_policy: Optional[
         Literal["random", "nearest", "shortest_queue", "alternating", "round_robin"]
     ] = None
@@ -86,8 +90,9 @@ class SubResource(SubmodelElementCollection):
     """
 
     resource_id: str
-    position: conlist(float, min_length=2, max_length=3) # type: ignore
-    orientation: conlist(float, min_length=1, max_length=3) # type: ignore
+    position: conlist(float, min_length=2, max_length=3)  # type: ignore
+    orientation: conlist(float, min_length=1, max_length=3)  # type: ignore
+
 
 class ResourceStatus(SubmodelElementCollection):
     """
@@ -100,8 +105,10 @@ class ResourceStatus(SubmodelElementCollection):
         status (ProcedureTypeEnum): The status of the resource.
         status_start (Optional[str]): The start time of the status (ISO 8601 time stamp).
     """
+
     status: ProcedureTypeEnum
     status_start: Optional[str] = None
+
 
 class ResourceConfiguration(Submodel):
     """
@@ -135,6 +142,7 @@ class InformationInterface(SubmodelElementCollection):
     port: Optional[int] = None
     endpoint: Optional[str] = None
 
+
 class MaterialDirectionType(str, Enum):
     """
     Enum to describe the direction of material flow in a material interface.
@@ -155,16 +163,19 @@ class MaterialInterface(SubmodelElementCollection):
         orientation (conlist(float, min_length=2, max_length=3)): The orientation of the material interface.
     """
 
-    position: conlist(float, min_length=2, max_length=3) # type: ignore
-    orientation: conlist(float, min_length=2, max_length=3) # type: ignore
+    position: conlist(float, min_length=2, max_length=3)  # type: ignore
+    orientation: conlist(float, min_length=2, max_length=3)  # type: ignore
     key_points: List[KeyPoint]
     direction: MaterialDirectionType = MaterialDirectionType.INOUT
 
 
 class KeyPoint(SubmodelElementCollection):
-    position: conlist(float, min_length=2, max_length=3) # type: ignore
-    orientation: conlist(float, min_length=2, max_length=4) # type: ignore
-    procedure_id: str # Id of the procedure of the resource that should be triggered here...
+    position: conlist(float, min_length=2, max_length=3)  # type: ignore
+    orientation: conlist(float, min_length=2, max_length=4)  # type: ignore
+    procedure_id: (
+        str  # Id of the procedure of the resource that should be triggered here...
+    )
+
 
 class EnergyInterface(SubmodelElementCollection):
     """

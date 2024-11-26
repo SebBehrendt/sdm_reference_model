@@ -32,6 +32,22 @@ uvicorn = ">=0.29.0,<0.30.0"
 industrial = ["aiomqtt (>=2.1.0,<3.0.0)", "asyncua (>=1.1.0,<2.0.0)"]
 
 [[package]]
+name = "aas-pydantic"
+version = "0.1.0"
+description = "aas-pydantic is a package that combines the basyx python sdk for handling Asset Administration Shells (AAS) with pydantic Basemodels for fast and easy modeling and transformation of pydantic models and AAS."
+optional = false
+python-versions = "<4.0,>=3.10"
+files = [
+    {file = "aas_pydantic-0.1.0-py3-none-any.whl", hash = "sha256:8e07f7f87f0daa1ee29f520ca95431b81e7058008f484efdb36a0661075a8ba6"},
+    {file = "aas_pydantic-0.1.0.tar.gz", hash = "sha256:eab97287c00b7b44c9e0eea185888de083e38af0bc242aeb32d5d51ef28dbe39"},
+]
+
+[package.dependencies]
+basyx-python-sdk = ">=1.0.0,<2.0.0"
+pydantic = ">=2.10.1,<3.0.0"
+stringcase = ">=1.2.0,<2.0.0"
+
+[[package]]
 name = "aiofiles"
 version = "24.1.0"
 description = "File support for asyncio."
@@ -2111,6 +2127,16 @@ graphql-core = ">=3.1,<3.3"
 starlette = ">=0.14.1"
 
 [[package]]
+name = "stringcase"
+version = "1.2.0"
+description = "String case converter."
+optional = false
+python-versions = "*"
+files = [
+    {file = "stringcase-1.2.0.tar.gz", hash = "sha256:48a06980661908efe8d9d34eab2b6c13aefa2163b3ced26972902e3bdfd87008"},
+]
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -2574,4 +2600,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "83cebf0c059e147e7a0da3f00fc1b8b1d2dd96dfe222125c840fa701c0859a0d"
+content-hash = "3b541db873e4cc58596059c03d8e425e23b7f5d7eb030a139146c16ddc58543f"

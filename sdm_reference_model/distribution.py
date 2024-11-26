@@ -2,7 +2,7 @@ from typing import Literal, Union
 
 from enum import Enum
 
-from aas_middleware.model.formatting.aas.aas_model import SubmodelElementCollection
+from aas_pydantic import SubmodelElementCollection
 
 
 class DistributionTypeEnum(str, Enum):

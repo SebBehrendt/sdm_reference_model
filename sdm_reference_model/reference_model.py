@@ -11,7 +11,16 @@ from sdm_reference_model.order import Order
 from sdm_reference_model.change_scenario import ChangeScenario
 
 
-REFERENCE_MODEL_TYPES_LIST = [Product, Resource, Procedure, Process, Order, ChangeScenario, Performance]
+REFERENCE_MODEL_TYPES_LIST = [
+    Product,
+    Resource,
+    Procedure,
+    Process,
+    Order,
+    ChangeScenario,
+    Performance,
+]
+
 
 class ReferenceModel(DataModel):
     product: List[Product] = []
@@ -25,7 +34,9 @@ class ReferenceModel(DataModel):
     def from_dict(self, data: NESTED_DICT) -> None:
         # self.super().from_dict(data=data, types=[Product, Resource, Procedure, Process, Order, ChangeScenario])
         # use the from dict of the super class
-        super(ReferenceModel, self).from_dict(data=data, types=REFERENCE_MODEL_TYPES_LIST)
+        super(ReferenceModel, self).from_dict(
+            data=data, types=REFERENCE_MODEL_TYPES_LIST
+        )
         self.product = self.get_models_of_type(Product)
         self.resource = self.get_models_of_type(Resource)
         self.procedure = self.get_models_of_type(Procedure)
@@ -40,9 +51,13 @@ class ReferenceModel(DataModel):
         else:
             self.change_scenario = None
 
-
     @classmethod
-    def from_models(cls, *models: List[Union[Product, Resource, Procedure, Process, Order, ChangeScenario]]) -> ReferenceModel:
+    def from_models(
+        cls,
+        *models: List[
+            Union[Product, Resource, Procedure, Process, Order, ChangeScenario]
+        ],
+    ) -> ReferenceModel:
         instance = cls()
         for model in models:
             if isinstance(model, Product):

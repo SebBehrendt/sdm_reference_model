@@ -3,7 +3,7 @@ from typing import Literal, Optional, List
 
 from enum import Enum
 
-from aas_middleware.model.formatting.aas.aas_model import (
+from aas_pydantic import (
     AAS,
     Submodel,
     SubmodelElementCollection,

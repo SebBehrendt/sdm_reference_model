@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 
-from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
+from aas_pydantic import AAS, Submodel, SubmodelElementCollection
 
 
 class GeneralInformation(Submodel):
