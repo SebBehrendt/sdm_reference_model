@@ -8,6 +8,7 @@ from aas_middleware.model.formatting.aas.aas_model import (
     Submodel,
     SubmodelElementCollection,
 )
+from aas_middleware import Reference
 from .processes import ProcessAttributes
 from .distribution import (
     ABSTRACT_REAL_DISTRIBUTION,
@@ -34,6 +35,7 @@ class ProcedureTypeEnum(str, Enum):
     NON_SCHEDULED = "NonScheduled"
     ORDER_RELEASE = "OrderRelease"
     ORDER_SHIPPING = "OrderShipping"
+    MEASUREMENT = "Measurement"
 
 
 class ActivityTypeEnum(str, Enum):
@@ -74,6 +76,39 @@ class Event(SubmodelElementCollection):
     success: Optional[bool] = None
 
 
+class ExecutionDataPoint(SubmodelElementCollection):
+    """
+    This class represents a single data point in a process data collection.
+
+    Args:
+        data_type (Literal["control_parameters", "measurement_data"]): The type of the data point.
+        name (str): The name of entity represented by the data point.
+        unit (str): The unit of the data point.
+        date (str): The date of the data point when used.
+        values (List[float]): The values of the data point.
+    """
+    data_type: Literal["control_parameters", "measurement_data"]
+    name: str
+    unit: str
+    date: str
+    values: List[float]
+    # TODO: possibly add more attributes to specify a data point and its context.
+
+
+class ProcedureExecutionData(SubmodelElementCollection):
+    """
+    This class represents a collection of process data points that are collected during execution of a procedure.
+
+    Args:
+        control_parameters (Optional[ExecutionDataPoint]): The control parameters of the procedure.
+        measurement_data (Optional[ExecutionDataPoint]): The measurement data of the procedure.
+        event_id (Optional[Reference]): The id of the event that the data point is associated with. Can be used to find out the resource or product that the data point is associated with.
+    """
+    control_parameters: Optional[ExecutionDataPoint] = None
+    measurement_data: Optional[ExecutionDataPoint] = None
+    event_id: Optional[Reference] = None
+
+
 class ExecutionModel(Submodel):
     """
     The ExecutionModel represents all planned (scheduled) and performed (executed) execution of a process. It contains the schedule of the process, and the execution log of the process.
@@ -89,6 +124,7 @@ class ExecutionModel(Submodel):
 
     schedule: Optional[List[Event]] = None
     execution_log: Optional[List[Event]] = None
+    process_data: Optional[list[ProcedureExecutionData]] = None
 
 
 class TransportTime(SubmodelElementCollection):

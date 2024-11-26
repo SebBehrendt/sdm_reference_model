@@ -6,7 +6,7 @@ from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
-from sdm.models.sdm_reference_model.procedure import ProcedureTypeEnum
+from .procedure import ProcedureTypeEnum
 from .product import ConstructionData
 
 
@@ -35,6 +35,7 @@ class ResourceInformation(Submodel):
         "Empty Spot",
         "Source",
         "Sink",
+        "Measurement",
     ]
 
 
