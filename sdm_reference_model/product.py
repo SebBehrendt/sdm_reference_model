@@ -5,7 +5,7 @@ from typing import Optional, List
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
-from .procedure import Event
+from sdm_reference_model.procedure import Event
 
 
 class ProductUseType(str, Enum):

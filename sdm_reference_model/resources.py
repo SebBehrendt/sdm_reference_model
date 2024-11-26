@@ -6,8 +6,8 @@ from pydantic import conlist
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
 
-from sdm.models.sdm_reference_model.procedure import ProcedureTypeEnum
-from .product import ConstructionData
+from sdm_reference_model.procedure import ProcedureTypeEnum
+from sdm_reference_model.product import ConstructionData
 
 
 class ResourceInformation(Submodel):

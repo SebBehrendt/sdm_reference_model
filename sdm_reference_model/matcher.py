@@ -1,5 +1,5 @@
 from typing import List
-from . import procedure, processes, reference_model
+from sdm_reference_model import procedure, processes, reference_model
 
 
 def check_attribute_predicate(

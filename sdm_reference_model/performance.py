@@ -3,7 +3,7 @@ from typing import List, Optional, Tuple, Literal
 from enum import Enum
 
 from aas_middleware.model.formatting.aas.aas_model import AAS, Submodel, SubmodelElementCollection
-from .procedure import Event
+from sdm_reference_model.procedure import Event
 
 # TODO docstrings are missing
 

@@ -8,13 +8,13 @@ from aas_middleware.model.formatting.aas.aas_model import (
     Submodel,
     SubmodelElementCollection,
 )
-from .processes import ProcessAttributes
-from .distribution import (
+from sdm_reference_model.processes import ProcessAttributes
+from sdm_reference_model.distribution import (
     ABSTRACT_REAL_DISTRIBUTION,
     DistributionTypeEnum,
 )
 
-ProcessAttributes.update_forward_refs()
+ProcessAttributes.model_rebuild()
 
 
 class ProcedureTypeEnum(str, Enum):

@@ -1,15 +1,14 @@
 from __future__ import annotations
 from typing import Union, Optional, List
-
-
-from .performance import Performance
-from .processes import Process
-from .procedure import Procedure
-from .product import Product
-from .resources import Resource
-from .order import Order
-from .change_scenario import ChangeScenario
 from aas_middleware.model.data_model import DataModel, NESTED_DICT
+
+from sdm_reference_model.performance import Performance
+from sdm_reference_model.processes import Process
+from sdm_reference_model.procedure import Procedure
+from sdm_reference_model.product import Product
+from sdm_reference_model.resources import Resource
+from sdm_reference_model.order import Order
+from sdm_reference_model.change_scenario import ChangeScenario
 
 
 REFERENCE_MODEL_TYPES_LIST = [Product, Resource, Procedure, Process, Order, ChangeScenario, Performance]
