@@ -85,6 +85,7 @@ class ConstructionData(Submodel):
     """
 
     cad_file: Optional[str] = None
+    photo_file: Optional[str] = None
 
 class GreenHouseGasEmission(SubmodelElementCollection):
     """

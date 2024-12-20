@@ -237,6 +237,30 @@ class ResourcePerformances(Submodel):
     resource_performance: Optional[List[ResourcePerformance]] = None
 
 
+class Location(SubmodelElementCollection):
+    resource_id: str
+    resource_name: str
+    x: float
+    y: float
+    z: Optional[float] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    valid_from: Optional[str] = None
+    valid_to: Optional[str] = None
+
+class ResourceLocationHistory(Submodel):
+    """
+    Submodel to describe the location history of a resource.
+
+    Args:
+        id (str): The id of the location history.
+        description (Optional[str]): The description of the location history.
+        id_short (Optional[str]): The short id of the location history.
+        semantic_id (Optional[str]): The semantic id of the location history.
+        locations (Optional[List[Location]]): The location history of the resource.
+    """
+    locations: Optional[List[Location]] = None
+
 class ProductReference(Submodel):
     """
     Submodel to describe the emission of a resource.
@@ -271,4 +295,5 @@ class Resource(AAS):
     control_logic: Optional[ControlLogic] = None
     resource_interface: Optional[ResourceInterfaces] = None
     resource_performances: Optional[ResourcePerformances] = None
+    resource_location_history: Optional[ResourceLocationHistory] = None
     product_reference: Optional[ProductReference] = None
