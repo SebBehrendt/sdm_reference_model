@@ -74,4 +74,6 @@ class ReferenceModel(DataModel):
                 instance.performance.append(model)
             elif isinstance(model, ChangeScenario):
                 instance.change_scenario = model
+                continue
+            instance.add(model)
         return instance
