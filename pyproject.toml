@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sdm-reference-model"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Sebastian Behrendt <sebastianbehrendt97@gmail.com>"]
 readme = "README.md"
@@ -12,6 +12,7 @@ packages = [
 python = "^3.10"
 aas-pydantic = "^0.1.0"
 aas-middleware = {extras = ["industrial"], version = "^0.2.2"}
+importlib-metadata = "^8.5.0"
 
 
 [tool.poetry.group.dev.dependencies]
