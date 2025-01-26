@@ -110,6 +110,24 @@ class ResourceStatus(SubmodelElementCollection):
     status_start: Optional[str] = None
 
 
+class ResourceLink(SubmodelElementCollection):
+    """
+    SubmodelElementCollection to describe the status of a resource.
+
+    Args:
+        description (Optional[str]): The description of the status.
+        id_short (Optional[str]): The short id of the status.
+        semantic_id (Optional[str]): The semantic id of the status.
+        origin_resource_id (str): The id of the origin resource.
+        target_resource_id (str): The id of the target resource.
+        link_type (Literal["Directional", "Bidirectional"]): The type of the link.
+    """
+
+    origin_resource_id: str
+    target_resource_id: str
+    link_type: Literal["Directional", "Bidirectional"]
+
+
 class ResourceConfiguration(Submodel):
     """
     Submodel to describe the configuration of a resource, by describing its sub resources and their position and orientation.
@@ -123,6 +141,7 @@ class ResourceConfiguration(Submodel):
     """
 
     sub_resources: Optional[List[SubResource]] = None
+    resource_links: Optional[List[ResourceLink]] = None
     status: Optional[ResourceStatus] = None
 
 
@@ -259,6 +278,7 @@ class Location(SubmodelElementCollection):
     valid_from: Optional[str] = None
     valid_to: Optional[str] = None
 
+
 class ResourceLocationHistory(Submodel):
     """
     Submodel to describe the location history of a resource.
@@ -270,7 +290,9 @@ class ResourceLocationHistory(Submodel):
         semantic_id (Optional[str]): The semantic id of the location history.
         locations (Optional[List[Location]]): The location history of the resource.
     """
+
     locations: Optional[List[Location]] = None
+
 
 class ProductReference(Submodel):
     """
