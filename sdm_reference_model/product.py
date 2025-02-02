@@ -140,6 +140,38 @@ class TrackingData(Submodel):
     execution_log: Optional[List[Event]] = None
 
 
+class ProductCostStructure(Submodel):
+    """
+    Submodel to describe the cost structure of a product during the complete lifecycle of the product.
+
+    Args:
+        id (str): The id of the cost structure.
+        description (Optional[str]): The description of the cost structure.
+        id_short (Optional[str]): The short id of the cost structure.
+        semantic_id (Optional[str]): The semantic id of the cost structure.
+        material_cost (Optional[float]): The material cost of the product.
+        labor_cost (Optional[float]): The labor cost of the product.
+        manufacturing_cost (Optional[float]): The manufacturing cost of the product.
+        administrative_cost (Optional[float]): The administrative cost of the product.
+        energy_cost (Optional[float]): The energy cost of the product during its lifecycle.
+        disposal_cost (Optional[float]): The disposal cost of the product.
+        maintenance_cost (Optional[float]): The maintenance cost of the product during its lifecycle.
+        recycling_cost (Optional[float]): The recycling cost of the product.
+        other_cost (Optional[float]): Other costs of the product.
+    """
+
+    material_cost: Optional[float] = None
+    labor_cost: Optional[float] = None
+    manufacturing_cost: Optional[float] = None
+    administrative_cost: Optional[float] = None
+
+    energy_cost: Optional[float] = None
+    disposal_cost: Optional[float] = None
+    maintenance_cost: Optional[float] = None
+    recycling_cost: Optional[float] = None
+    other_cost: Optional[float] = None
+
+
 class Product(AAS):
     """
     AAS to describe a product.
@@ -160,3 +192,4 @@ class Product(AAS):
     bom: Optional[BOM] = None
     process_reference: Optional[ProcessReference] = None
     tracking_data: Optional[TrackingData] = None
+    cost_structure: Optional[ProductCostStructure] = None
