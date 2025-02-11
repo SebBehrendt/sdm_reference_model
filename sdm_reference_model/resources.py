@@ -34,6 +34,7 @@ class ResourceInformation(Submodel):
         "Storage",
         "Barrier",
         "Empty Spot",
+        "Boundary",
         "Source",
         "Sink",
     ]
