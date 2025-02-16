@@ -38,7 +38,7 @@ class OrderedProduct(SubmodelElementCollection):
 
     product_type: str
     target_quantity: int
-    product_ids: List[str] = []
+    product_ids: Optional[List[str]] = None
 
 
 class OrderedProducts(Submodel):
