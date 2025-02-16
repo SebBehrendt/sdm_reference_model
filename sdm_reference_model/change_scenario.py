@@ -118,6 +118,34 @@ class ScenarioModel(Submodel):
     receptor_key_figures: List[ReceptorKeyFigure]
 
 
+class ProductSaleForecast(SubmodelElementCollection):
+    """
+    The ProductSaleForecast represents the forecast of the sale of a product.
+
+    Args:
+        product_id (str): The id of the product.
+        quantity (float): The quantity of the product that is sold.
+        forecast_start (str): The start of the forecast of the sale of the product.
+        forecast_end (str): The end of the forecast of the sale of the product.
+    """
+
+    product_id: str
+    quantity: float
+    start: str
+    end: str
+
+
+class ScenarioForecasts(Submodel):
+    """
+    The ScenarioForecasts represents the forecasts of the change scenario.
+
+    Args:
+        product_sale_forecasts (List[ProductSaleForecast]): The forecasts of the sale of the products.
+    """
+
+    product_sale_forecasts: List[ProductSaleForecast]
+
+
 class ReconfigurationConstraints(Submodel):
     """
     The ReconfigurationConstraints represents the constraints for the reconfiguration of the production system.
@@ -241,6 +269,7 @@ class ChangeScenario(AAS):
     """
 
     scenario_model: Optional[ScenarioModel] = None
+    scenario_forecasts: Optional[ScenarioForecasts] = None
     scenario_resources: Optional[ScenarioResources] = None
     reconfiguration_constraints: Optional[ReconfigurationConstraints] = None
     reconfiguration_options: Optional[ReconfigurationOptions] = None
